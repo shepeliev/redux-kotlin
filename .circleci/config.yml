@@ -33,7 +33,7 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # run tests!
-      - run: gradle publish -PnexusUsername=$SONATYPE_USERNAME -PnexusPassword=$SONATYPE_PASSWORD '-Psigning.keyId=$KEY_ID' '-Psigning.password=$SIGNING_PASSWORD' -Psigning.secretKeyRingFile=PRIVATE_GPG_KEY.asc
+      - run: gradle publish -PnexusUsername=$SONATYPE_USERNAME -PnexusPassword=$SONATYPE_PASSWORD '-Psigning.keyId=$KEY_ID' '-Psigning.password=$SIGNING_PASSWORD' -Psigning.secretKeyRingFile=../PRIVATE_GPG_KEY.asc
 
 
   build:
