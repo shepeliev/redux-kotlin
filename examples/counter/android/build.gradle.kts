@@ -25,8 +25,6 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
         getByName("debug") {
-            // MPP libraries don't currently get this resolution automatically
-            matchingFallbacks = listOf("release")
         }
     }
     packagingOptions {

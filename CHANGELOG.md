@@ -1,5 +1,9 @@
 ## Unreleased
 
+## [0.6.0] - 2021-02-04
+ - update to Kotlin 1.4.30
+ - update to atomicfu 0.15.1
+
 ## [0.5.5] - 2020-08-16
  - update to Kotlin 1.4.0
  - added platforms (androidNativeArm32, androidNativeArm64, iosArm32, linuxArm64, linuxX64,

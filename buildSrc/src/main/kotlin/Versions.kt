@@ -20,7 +20,7 @@ object Versions {
 
     const val aapt2: String = "3.6.0-6040484" // available: "4.0.1-6197926"
 
-    const val com_android_tools_build_gradle: String = "3.6.0" // available: "4.0.1"
+    const val com_android_tools_build_gradle: String = "4.1.1" // available: "4.0.1"
 
     const val lint_gradle: String = "26.6.0" // available: "27.0.1"
 
@@ -30,17 +30,17 @@ object Versions {
 
     const val dokka_gradle_plugin: String = "0.9.17" // available: "0.11.0-dev-59"
 
-    const val org_jetbrains_kotlin: String = "1.4.0"
+    const val org_jetbrains_kotlin: String = "1.4.30"
 
-    const val atomicfu_gradle_plugin: String = "0.14.3-1.4.0-rc"
+    const val atomicfu_gradle_plugin: String = "0.15.1"
 
-    const val atomicfu: String = "0.14.3-1.4.0-rc"
+    const val atomicfu: String = "0.15.1"
 
-    const val kotlinx_coroutines_core_jvm: String = "1.3.8-1.4.0-rc"
+    const val kotlinx_coroutines_core_jvm: String = "1.4.2"
 
-    const val kotlinx_coroutines_core: String = "1.3.8-1.4.0-rc"
+    const val kotlinx_coroutines_core: String = "1.4.2"
 
-    const val kotlinx_coroutines_test: String = "1.3.8-1.4.0-rc"
+    const val kotlinx_coroutines_test: String = "1.4.2"
 
     /**
      *

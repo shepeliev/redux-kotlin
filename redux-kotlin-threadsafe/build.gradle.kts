@@ -35,7 +35,7 @@ kotlin {
     watchosArm64()
     watchosX86()
 
-//    below are currently not supported by atomicfu
+//    below are currently not supported by atomicfu https://github.com/Kotlin/kotlinx.atomicfu/issues/142
 //    wasm32("wasm")
 //    linuxArm32Hfp("linArm32")
 //    linuxMips32("linMips32")
