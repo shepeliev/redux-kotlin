@@ -1,4 +1,3 @@
-
 plugins {
     java
     kotlin("multiplatform")
@@ -52,19 +51,19 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation(Libs.mockk_common)
-                implementation(Libs.kotlinx_coroutines_core)
+                implementation(Testing.mockK.common)
+                implementation(KotlinX.coroutines.core)
             }
         }
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
-                implementation(Libs.kotlinx_coroutines_test)
-                implementation(Libs.kotlinx_coroutines_core_jvm)
-                implementation(Libs.mockk)
+                implementation(KotlinX.coroutines.test)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:_")
+                implementation(Testing.mockK)
 
-                runtimeOnly(Libs.kotlin_reflect)
+                runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:_")
             }
         }
         val jsMain by getting

@@ -32,14 +32,14 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("io.mockk:mockk-common:${Versions.io_mockk}")
+                implementation(Testing.mockK.common)
             }
         }
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
-                implementation("io.mockk:mockk:${Versions.io_mockk}")
+                implementation(Testing.mockK)
 
                 runtimeOnly("org.jetbrains.kotlin:kotlin-reflect")
             }

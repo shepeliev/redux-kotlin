@@ -26,7 +26,8 @@ android {
         }
         getByName("debug") {
             // MPP libraries don't currently get this resolution automatically
-            matchingFallbacks = listOf("release")
+            // todo this doesn't compile any more
+//            matchingFallbacks = listOf("release")
         }
     }
     packagingOptions {
@@ -35,8 +36,7 @@ android {
 }
 
 dependencies {
-    implementation(Libs.kotlin_stdlib_jdk8)
-    implementation(Libs.appcompat)
+    implementation(AndroidX.appCompat)
 
     implementation(project(":examples:counter:common"))
     implementation(project(":redux-kotlin-threadsafe"))

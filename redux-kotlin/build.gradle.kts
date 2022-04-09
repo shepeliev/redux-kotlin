@@ -45,7 +45,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation(Libs.mockk_common)
+                implementation(Testing.mockK.common)
             }
         }
 
@@ -81,10 +81,10 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
-                implementation(Libs.kotlinx_coroutines_test)
-                implementation(Libs.kotlinx_coroutines_core_jvm)
-                implementation(Libs.mockk)
-                runtimeOnly(Libs.kotlin_reflect)
+                implementation(KotlinX.coroutines.test)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:_")
+                implementation(Testing.mockK)
+                runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:_")
             }
         }
 
