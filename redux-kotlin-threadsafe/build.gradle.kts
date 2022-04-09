@@ -67,6 +67,7 @@ kotlin {
                 runtimeOnly(Libs.kotlin_reflect)
             }
         }
+        val jsMain by getting
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
@@ -98,4 +99,5 @@ afterEvaluate {
     }
 }
 
-apply(from = rootProject.file("gradle/publish.gradle"))
+// todo
+//apply(from = rootProject.file("gradle/publish.gradle"))

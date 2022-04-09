@@ -9,6 +9,8 @@ kotlin {
     iosArm32()
     iosArm64()
     iosX64()
+    // TODO
+    // iosSimulatorArm64()
     js(BOTH) {
         browser()
         nodejs()
@@ -58,6 +60,9 @@ kotlin {
         val androidNativeArm64Main by getting(fallback)
         val iosArm32Main by getting(ios)
         val iosArm32Test by getting(ios)
+        // todo
+        //val iosSimulatorArm64 by getting(ios)
+
         val iosArm64Main by getting(ios)
         val iosArm64Test by getting(ios)
         val iosX64Main by getting(ios)
@@ -66,6 +71,7 @@ kotlin {
         val linuxMips32Main by getting(fallback)
         val linuxMipsel32Main by getting(fallback)
         val linuxX64Main by getting(fallback)
+        val jsMain by getting(fallback)
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
@@ -115,4 +121,5 @@ afterEvaluate {
     }
 }
 
-apply(from = rootProject.file("gradle/publish.gradle"))
+// todo
+//apply(from = rootProject.file("gradle/publish.gradle"))
