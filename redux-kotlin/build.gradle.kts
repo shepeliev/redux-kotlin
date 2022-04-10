@@ -50,7 +50,7 @@ kotlin {
         }
 
         val fallback: (org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet.() -> Unit) = {
-            kotlin.srcDir("src/fallbackMain")
+            kotlin.srcDir("src/fallbackMain/kotlin")
         }
         val ios: (org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet.() -> Unit) = {
             kotlin.srcDir("src/iosMain/kotlin")
@@ -71,7 +71,7 @@ kotlin {
         val linuxMips32Main by getting(fallback)
         val linuxMipsel32Main by getting(fallback)
         val linuxX64Main by getting(fallback)
-        val jsMain by getting(fallback)
+        val jsMain by getting
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
