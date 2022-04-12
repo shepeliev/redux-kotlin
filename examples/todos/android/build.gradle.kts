@@ -27,11 +27,6 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
-        getByName("debug") {
-            // MPP libraries don't currently get this resolution automatically
-            // todo this doesn't compile any more
-//            matchingFallbacks = listOf("release")
-        }
     }
     packagingOptions {
         exclude("META-INF/*.kotlin_module")
