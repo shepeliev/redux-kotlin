@@ -1,12 +1,18 @@
 plugins {
-    java
     kotlin("multiplatform")
+    id("com.android.library")
 }
 
 kotlin {
+    android()
+    jvm()
+
     iosArm32()
     iosArm64()
     iosX64()
+    // TODO
+    // iosSimulatorArm64()
+
     js(IR) {
         binaries.executable()
         browser()
@@ -20,35 +26,58 @@ kotlin {
             }
         }
     }
-    jvm()
 
     sourceSets {
-        commonMain {
+        val commonMain by getting {
             dependencies {
                 implementation(project(":redux-kotlin"))
             }
         }
-        commonTest {
+        val commonTest by getting {
             dependencies {
+                dependsOn(commonMain)
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(Testing.mockK.common)
             }
         }
-        val jvmTest by getting {
+        val androidTest by getting {
             dependencies {
+                dependsOn(commonTest)
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
                 implementation(Testing.mockK)
-
-                runtimeOnly("org.jetbrains.kotlin:kotlin-reflect")
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                dependsOn(androidTest)
             }
         }
         val jsTest by getting {
             dependencies {
+                dependsOn(commonTest)
                 implementation(kotlin("test-js"))
                 implementation(kotlin("stdlib-js"))
             }
         }
+    }
+}
+
+android {
+    compileSdk = 32
+
+    defaultConfig {
+        minSdk = 26
+        targetSdk = compileSdk
+    }
+
+    sourceSets["main"].run {
+        manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }

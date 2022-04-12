@@ -6,11 +6,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdk = 32
+
     defaultConfig {
         applicationId = "org.reduxkotlin.example.todos"
-        minSdkVersion(26)
-        targetSdkVersion(29)
+        minSdk = 26
+        targetSdk = compileSdk
+
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -19,6 +21,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -28,7 +31,6 @@ android {
             // MPP libraries don't currently get this resolution automatically
             // todo this doesn't compile any more
 //            matchingFallbacks = listOf("release")
-            isDebuggable = true
         }
     }
     packagingOptions {
@@ -37,10 +39,11 @@ android {
 }
 
 dependencies {
+    implementation(project(":redux-kotlin"))
+    implementation(project(":redux-kotlin-threadsafe"))
+    implementation(project(":examples:todos:common"))
+
     implementation(AndroidX.appCompat)
     implementation(AndroidX.constraintLayout)
     implementation(AndroidX.recyclerView)
-
-    implementation(project(":examples:todos:common"))
-    implementation(project(":redux-kotlin-threadsafe"))
 }

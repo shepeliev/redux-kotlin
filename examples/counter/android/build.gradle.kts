@@ -6,19 +6,23 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdk = 32
+
     defaultConfig {
         applicationId = "org.reduxkotlin.example.counter"
-        minSdkVersion(26)
-        targetSdkVersion(29)
+        minSdk = 26
+        targetSdk = compileSdk
+
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -30,14 +34,16 @@ android {
 //            matchingFallbacks = listOf("release")
         }
     }
+
     packagingOptions {
         exclude("META-INF/*.kotlin_module")
     }
 }
 
 dependencies {
-    implementation(AndroidX.appCompat)
-
-    implementation(project(":examples:counter:common"))
+    implementation(project(":redux-kotlin"))
     implementation(project(":redux-kotlin-threadsafe"))
+    implementation(project(":examples:counter:common"))
+
+    implementation(AndroidX.appCompat)
 }

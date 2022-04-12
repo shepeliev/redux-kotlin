@@ -1,16 +1,14 @@
 plugins {
-    java
     kotlin("multiplatform")
+    id("com.android.library")
     id("kotlinx-atomicfu")
 }
 
 kotlin {
-//    androidNativeArm32()
-//    androidNativeArm64()
-//    iosArm32()
+    android()
     iosArm64()
     iosX64()
-    js(BOTH) {
+    js(IR) {
         browser()
         nodejs()
 
@@ -27,7 +25,6 @@ kotlin {
     linuxX64()
     macosX64()
     mingwX64()
-//    mingwX86()
     tvosArm64()
     tvosX64()
     watchosArm32()
@@ -35,6 +32,10 @@ kotlin {
     watchosX86()
 
 //    below are currently not supported by atomicfu
+//    mingwX86()
+//    androidNativeArm32()
+//    androidNativeArm64()
+//    iosArm32()
 //    wasm32("wasm")
 //    linuxArm32Hfp("linArm32")
 //    linuxMips32("linMips32")
@@ -47,6 +48,7 @@ kotlin {
                 api(project(":redux-kotlin"))
             }
         }
+
         commonTest {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -55,6 +57,7 @@ kotlin {
                 implementation(KotlinX.coroutines.core)
             }
         }
+
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -66,13 +69,36 @@ kotlin {
                 runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:_")
             }
         }
-        val jsMain by getting
+
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(kotlin("stdlib-js"))
             }
         }
+    }
+}
+
+android {
+    compileSdk = 32
+
+    defaultConfig {
+        minSdk = 26
+        targetSdk = compileSdk
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    sourceSets["main"].run {
+        manifest.srcFile("src/androidMain/AndroidManifest.xml")
+        resources.srcDirs(
+            "src/androidMain/resources",
+            "src/commonMain/resources",
+        )
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 

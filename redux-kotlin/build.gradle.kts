@@ -1,9 +1,10 @@
 plugins {
-    java
     kotlin("multiplatform")
+    id("com.android.library")
 }
 
 kotlin {
+    android()
     androidNativeArm32()
     androidNativeArm64()
     iosArm32()
@@ -56,6 +57,21 @@ kotlin {
             kotlin.srcDir("src/iosMain/kotlin")
         }
 
+        val androidMain by getting {
+            // this way we can share the JVM and the Android implementation
+            // see https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform
+            kotlin.srcDir("src/commonJvmAndroid/kotlin")
+        }
+        val androidTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(kotlin("test-junit"))
+                implementation(KotlinX.coroutines.test)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:_")
+                implementation(Testing.mockK)
+                runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:_")
+            }
+        }
         val androidNativeArm32Main by getting(fallback)
         val androidNativeArm64Main by getting(fallback)
         val iosArm32Main by getting(ios)
@@ -71,11 +87,13 @@ kotlin {
         val linuxMips32Main by getting(fallback)
         val linuxMipsel32Main by getting(fallback)
         val linuxX64Main by getting(fallback)
-        val jsMain by getting
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
             }
+        }
+        val jvmMain by getting {
+            kotlin.srcDir("src/commonJvmAndroid/kotlin")
         }
         val jvmTest by getting {
             dependencies {
@@ -96,6 +114,28 @@ kotlin {
         val watchosArm32Main by getting(ios)
         val watchosArm64Main by getting(ios)
         val watchosX86Main by getting(ios)
+    }
+}
+
+android {
+    compileSdk = 32
+
+    defaultConfig {
+        minSdk = 26
+        targetSdk = compileSdk
+    }
+
+    sourceSets["main"].run {
+        manifest.srcFile("src/commonJvmAndroid/AndroidManifest.xml")
+        resources.srcDirs(
+            "src/androidMain/resources",
+            "src/commonMain/resources",
+        )
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
