@@ -1,46 +1,26 @@
-apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 apply plugin: 'org.jetbrains.dokka'
 
+dokkaHtml {
+    outputDirectory.set(file("./dokka"))
 
-dokka {
-    impliedPlatforms = ["Common"] // This will force platform tags for all non-common sources e.g. "JVM"
-    kotlinTasks {
-        // dokka fails to retrieve sources from MPP-tasks so they must be set empty to avoid exception
-        // use sourceRoot instead (see below)
-        []
+    dokkaSourceSets {
+        configureEach {
+            sourceRoots.from(file(kotlin.sourceSets.commonMain.kotlin.srcDirs[0]))
+            perPackageOption {
+                matchingRegex.set("org\\.reduxkotlin")
+                skipDeprecated.set(false)
+                reportUndocumented.set(true)
+                includeNonPublic.set(false)
+                suppress.set(false)
+            }
+            perPackageOption {
+                matchingRegex.set(".*\\.internal.*")
+                suppress.set(true)
+            }
+        }
     }
-    packageOptions {
-        prefix = "org.reduxkotlin"
-        suppress = true
-    }
-    sourceRoot {
-        // assuming there is only a single source dir...
-        path = kotlin.sourceSets.commonMain.kotlin.srcDirs[0]
-        platforms = ["Common"]
-    }
-//    if (kotlin.sourceSets.getNames().contains("jvmMain")) {
-//        sourceRoot {
-//            // assuming there is only a single source dir...
-//            path = kotlin.sourceSets.jvmMain.kotlin.srcDirs[0]
-//            platforms = ["JVM"]
-//        }
-//    }
-//    if (kotlin.sourceSets.getNames().contains("jsMain")) {
-//        sourceRoot {
-//            // assuming there is only a single source dir...
-//            path = kotlin.sourceSets.jsMain.kotlin.srcDirs[0]
-//            platforms = ["js"]
-//        }
-//    }
-//    if (kotlin.sourceSets.getNames().contains("nativeMain")) {
-//        sourceRoot {
-//            // assuming there is only a single source dir...
-//            path = kotlin.sourceSets.nativeMain.kotlin.srcDirs[0]
-//            platforms = ["native"]
-//        }
-//    }
 }
 
 def isReleaseBuild() {
@@ -69,9 +49,9 @@ task emptySourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task javadocsJar(type: Jar, dependsOn: dokka) {
+task javadocsJar(type: Jar, dependsOn: dokkaHtml) {
     classifier = 'javadoc'
-    from dokka.outputDirectory
+    from dokkaHtml.outputDirectory
 }
 
 signing {

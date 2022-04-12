@@ -1,25 +1,26 @@
 
 buildscript {
     repositories {
-        google()
+        gradlePluginPortal()
         mavenCentral()
-        maven("https://plugins.gradle.org/m2/")
         maven("https://oss.sonatype.org/content/repositories/snapshots")
+        google()
     }
 
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
         classpath(Android.tools.build.gradlePlugin)
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:_")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
         classpath("org.jetbrains.kotlinx:atomicfu-gradle-plugin:_")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.6.10")
     }
 }
 
 allprojects {
     repositories {
-        google()
-        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        gradlePluginPortal()
         mavenCentral()
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        google()
     }
 
     group = project.properties["GROUP"]!!
