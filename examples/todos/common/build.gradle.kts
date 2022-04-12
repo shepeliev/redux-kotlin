@@ -10,8 +10,6 @@ kotlin {
     iosArm32()
     iosArm64()
     iosX64()
-    // TODO
-    // iosSimulatorArm64()
 
     js(IR) {
         binaries.executable()

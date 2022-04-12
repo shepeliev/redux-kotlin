@@ -155,10 +155,6 @@ android {
 
     sourceSets["main"].run {
         manifest.srcFile("src/commonJvmAndroid/AndroidManifest.xml")
-        resources.srcDirs(
-            "src/androidMain/resources",
-            "src/commonMain/resources",
-        )
     }
 
     compileOptions {

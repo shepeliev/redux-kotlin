@@ -1,3 +1,5 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
@@ -6,8 +8,19 @@ plugins {
 
 kotlin {
     android()
-    iosArm64()
-    iosX64()
+    val isMacOsX = DefaultNativePlatform.getCurrentOperatingSystem().isMacOsX
+    if (isMacOsX) {
+        iosArm64()
+        iosX64()
+        iosSimulatorArm64()
+        macosX64()
+        tvosArm64()
+        tvosX64()
+        watchosArm32()
+        watchosArm64()
+        watchosX86()
+    }
+
     js(IR) {
         browser()
         nodejs()
@@ -23,13 +36,7 @@ kotlin {
     }
     jvm()
     linuxX64()
-    macosX64()
     mingwX64()
-    tvosArm64()
-    tvosX64()
-    watchosArm32()
-    watchosArm64()
-    watchosX86()
 
 //    below are currently not supported by atomicfu
 //    mingwX86()
@@ -90,10 +97,6 @@ android {
 
     sourceSets["main"].run {
         manifest.srcFile("src/androidMain/AndroidManifest.xml")
-        resources.srcDirs(
-            "src/androidMain/resources",
-            "src/commonMain/resources",
-        )
     }
 
     compileOptions {
