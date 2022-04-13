@@ -1,9 +1,12 @@
 name: Publish a release
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+
+#on:
+#  push:
+#    tags:
+#      - 'v*'
 
 jobs:
   publish:
