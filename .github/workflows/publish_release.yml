@@ -1,7 +1,6 @@
 name: Publish a release
 
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 #on:
 #  push:
