@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "org.reduxkotlin.example.todos"
-        minSdk = 26
+        minSdk = 21
         targetSdk = compileSdk
 
         versionCode = 1

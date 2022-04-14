@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlinx-atomicfu")
+    id("redux-publish")
 }
 
 kotlin {
@@ -90,7 +91,7 @@ android {
     compileSdk = 32
 
     defaultConfig {
-        minSdk = 26
+        minSdk = 21
         targetSdk = compileSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -126,5 +127,3 @@ afterEvaluate {
         // tasks.create("uploadArchives").dependsOn("publishKotlinMultiplatformPublicationToMavenRepository")
     }
 }
-
-apply(from = rootProject.file("gradle/publish.gradle"))

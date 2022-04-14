@@ -3,12 +3,14 @@ import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
+    id("redux-publish")
 }
 
 kotlin {
     android {
         publishLibraryVariants("release")
     }
+
     androidNativeArm32()
     androidNativeArm64()
 
@@ -151,7 +153,7 @@ android {
     compileSdk = 32
 
     defaultConfig {
-        minSdk = 26
+        minSdk = 21
         targetSdk = compileSdk
     }
 
@@ -186,5 +188,3 @@ afterEvaluate {
         // tasks.create("uploadArchives").dependsOn("publishKotlinMultiplatformPublicationToMavenRepository")
     }
 }
-
-apply(from = rootProject.file("gradle/publish.gradle"))
