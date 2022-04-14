@@ -1,12 +1,14 @@
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
-    kotlin("multiplatform")
     id("com.android.library")
+    kotlin("multiplatform")
 }
 
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release")
+    }
     androidNativeArm32()
     androidNativeArm64()
 

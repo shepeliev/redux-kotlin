@@ -1,15 +1,13 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:org.reduxkotlin////PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/index.html
-$dokka.location:org.reduxkotlin//createSynchronizedStoreEnhancer/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[watchos-x86]create-synchronized-store-enhancer.html
-$dokka.location:org.reduxkotlin//createThreadSafeStore/#Reducer<State>[TypeParam(bounds=[kotlin.Any?])]#TypeParam(bounds=[kotlin.Any?])#StoreEnhancer<State>[TypeParam(bounds=[kotlin.Any?])]?/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[common]create-thread-safe-store.html
-$dokka.location:org.reduxkotlin//createThreadSafeStore/#kotlin.Function2[TypeParam(bounds=[kotlin.Any?]),kotlin.Any,TypeParam(bounds=[kotlin.Any?])]#TypeParam(bounds=[kotlin.Any?])#kotlin.Function1[kotlin.Function3[kotlin.Function2[TypeParam(bounds=[kotlin.Any?]),kotlin.Any,TypeParam(bounds=[kotlin.Any?])],TypeParam(bounds=[kotlin.Any?]),kotlin.Any?,org.reduxkotlin.Store[TypeParam(bounds=[kotlin.Any?])]],kotlin.Function3[kotlin.Function2[TypeParam(bounds=[kotlin.Any?]),kotlin.Any,TypeParam(bounds=[kotlin.Any?])],TypeParam(bounds=[kotlin.Any?]),kotlin.Any?,org.reduxkotlin.Store[TypeParam(bounds=[kotlin.Any?])]]]?/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[watchos-x86]create-thread-safe-store.html
-$dokka.location:org.reduxkotlin/SynchronizedStore///PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[watchos-x86]-synchronized-store/index.html
-$dokka.location:org.reduxkotlin/SynchronizedStore/SynchronizedStore/#Store<TState>[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[common]-synchronized-store/-synchronized-store.html
-$dokka.location:org.reduxkotlin/SynchronizedStore/SynchronizedStore/#org.reduxkotlin.Store[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[watchos-x86]-synchronized-store/-synchronized-store.html
-$dokka.location:org.reduxkotlin/SynchronizedStore/dispatch/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[watchos-x86]-synchronized-store/dispatch.html
-$dokka.location:org.reduxkotlin/SynchronizedStore/getState/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[watchos-x86]-synchronized-store/get-state.html
-$dokka.location:org.reduxkotlin/SynchronizedStore/replaceReducer/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[watchos-x86]-synchronized-store/replace-reducer.html
-$dokka.location:org.reduxkotlin/SynchronizedStore/subscribe/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/[watchos-x86]-synchronized-store/subscribe.html
+$dokka.location:org.reduxkotlin//createSynchronizedStoreEnhancer/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/create-synchronized-store-enhancer.html
+$dokka.location:org.reduxkotlin//createThreadSafeStore/#Reducer<State>[TypeParam(bounds=[kotlin.Any?])]#TypeParam(bounds=[kotlin.Any?])#StoreEnhancer<State>[TypeParam(bounds=[kotlin.Any?])]?/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/create-thread-safe-store.html
+$dokka.location:org.reduxkotlin/SynchronizedStore///PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/-synchronized-store/index.html
+$dokka.location:org.reduxkotlin/SynchronizedStore/SynchronizedStore/#Store<TState>[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/-synchronized-store/-synchronized-store.html
+$dokka.location:org.reduxkotlin/SynchronizedStore/dispatch/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/-synchronized-store/dispatch.html
+$dokka.location:org.reduxkotlin/SynchronizedStore/getState/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/-synchronized-store/get-state.html
+$dokka.location:org.reduxkotlin/SynchronizedStore/replaceReducer/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/-synchronized-store/replace-reducer.html
+$dokka.location:org.reduxkotlin/SynchronizedStore/subscribe/#/PointingToDeclaration/redux-kotlin-threadsafe/org.reduxkotlin/-synchronized-store/subscribe.html
 org.reduxkotlin
 

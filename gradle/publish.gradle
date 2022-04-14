@@ -7,7 +7,7 @@ dokkaHtml {
 
     dokkaSourceSets {
         configureEach {
-            sourceRoots.from(file(kotlin.sourceSets.commonMain.kotlin.srcDirs[0]))
+            displayName.set(it.name)
             perPackageOption {
                 matchingRegex.set("org\\.reduxkotlin")
                 skipDeprecated.set(false)
@@ -94,13 +94,6 @@ publishing {
                     }
                 }
             }
-        }
-    }
-
-    afterEvaluate {
-        publications.getByName('kotlinMultiplatform') {
-            // Source jars are only created for platforms, not the common artifact.
-            artifact emptySourcesJar
         }
     }
 
