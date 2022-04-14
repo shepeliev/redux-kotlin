@@ -11,15 +11,9 @@ fun Project.get(name: String, def: String = "$name not found") =
     properties[name]?.toString() ?: System.getenv(name) ?: def
 
 fun Project.getRepositoryUrl(): java.net.URI {
-    val isReleaseBuild = !get("POM_VERSION_NAME").contains("SNAPSHOT")
-    val releaseRepoUrl = get(
-        "RELEASE_REPOSITORY_URL",
-        "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-    )
-    val snapshotRepoUrl = get(
-        "SNAPSHOT_REPOSITORY_URL",
-        "https://oss.sonatype.org/content/repositories/snapshots/"
-    )
+    val isReleaseBuild = !get("VERSION_NAME").contains("SNAPSHOT")
+    val releaseRepoUrl = get("RELEASE_REPOSITORY_URL", "https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+    val snapshotRepoUrl = get("SNAPSHOT_REPOSITORY_URL", "https://oss.sonatype.org/content/repositories/snapshots/")
     return uri(if (isReleaseBuild) releaseRepoUrl else snapshotRepoUrl)
 }
 
@@ -74,13 +68,14 @@ publishing {
                 }
             }
         }
-    }
 
-    // 3. sign the artifacts
-    signing {
-        val signingKeyPassword = project.get("GPG_SIGNING_PASSWORD")
-        val signingKey = project.get("GPG_SECRET")
-        useInMemoryPgpKeys(signingKey, signingKeyPassword)
-        sign(publishing.publications)
     }
+}
+
+// 3. sign the artifacts
+signing {
+    val signingKeyPassword = project.get("GPG_SIGNING_PASSWORD")
+    val signingKey = project.get("GPG_SECRET")
+    useInMemoryPgpKeys(signingKey, signingKeyPassword)
+    sign(publishing.publications)
 }
