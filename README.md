@@ -1,6 +1,6 @@
 # [Redux-Kotlin](https://reduxkotlin.org)
 
-![CI](https://github.com/reduxkotlin/redux-kotlin/workflows/PR/badge.svg)
+![CI](https://github.com/1gravity/redux-kotlin/workflows/PR/badge.svg)
 
 ![badge][badge-android]
 ![badge][badge-ios]
@@ -149,7 +149,7 @@ __\#redux__ slack channel in [kotlinlang](https://kotlinlang.slack.com)
 
 Trello boards - https://trello.com/reduxkotlinorg
 
-Or create an issue on [github](https://github.com/reduxkotlin/redux-kotlin/issues).
+Or create an issue on [github](https://github.com/1gravity/redux-kotlin/issues).
 
 [badge-android]: http://img.shields.io/badge/platform-android-brightgreen.svg?style=flat
 [badge-ios]: http://img.shields.io/badge/platform-ios-brightgreen.svg?style=flat
