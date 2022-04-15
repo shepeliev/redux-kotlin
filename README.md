@@ -37,17 +37,25 @@ Video TBA
 
 
 
-
 __How to add to project:__
 
 Artifacts are hosted on maven central.  They are published with gradle metadata, so you may need to enable with `enableFeaturePreview("GRADLE_METADATA")` in your settings.gradle file.  For multiplatform, add the following to your shared module:
 
 ```
+allprojects {
+    repositories {
+        // other repos
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
+    }
+}
+
+
 kotlin {
   sourceSets {
         commonMain { //   <---  name may vary on your project
             dependencies {
-                implementation "org.reduxkotlin:redux-kotlin-threadsafe:0.5.5"
+                // implementation "org.reduxkotlin:redux-kotlin-threadsafe:0.5.5"
+                implementation "com.1gravity.redux:redux-kotlin-threadsafe:0.5.7-SNAPSHOT"
             }
         }
  }
@@ -55,7 +63,7 @@ kotlin {
 
 For JVM only:
 ```
-  implementation "org.reduxkotlin:redux-kotlin-threadsafe-jvm:0.5.5"
+  implementation "com.1gravity.redux:redux-kotlin-threadsafe-JVM:0.5.7-SNAPSHOT"
 ```
 
 *Non threadsafe store is available.  Typical usage will be with the threadsafe store. [More info read here](https://www.reduxkotlin.org/introduction/getting-started)
