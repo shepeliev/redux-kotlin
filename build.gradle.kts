@@ -10,7 +10,7 @@ buildscript {
         classpath(Android.tools.build.gradlePlugin)
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
         classpath("org.jetbrains.kotlinx:atomicfu-gradle-plugin:_")
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.6.10")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:_")
     }
 }
 
