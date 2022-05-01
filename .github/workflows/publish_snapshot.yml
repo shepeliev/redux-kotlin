@@ -14,27 +14,30 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '11'
 
-    - name: Publish Snapshot
-      env:
-        SONATYPE_NEXUS_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
-        SONATYPE_NEXUS_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
-        GPG_SECRET: ${{ secrets.GPG_SECRET }}
-        GPG_SIGNING_PASSWORD: ${{ secrets.GPG_SIGNING_PASSWORD }}
-        SNAPSHOT: 'TRUE'
-      run: ./gradlew publish
+      - name: Publish Snapshot
+        env:
+          SONATYPE_NEXUS_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
+          SONATYPE_NEXUS_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
+          GPG_SECRET: ${{ secrets.GPG_SECRET }}
+          GPG_SIGNING_PASSWORD: ${{ secrets.GPG_SIGNING_PASSWORD }}
+          SNAPSHOT: 'TRUE'
+        run: ./gradlew publish
 
-    - name: Archive redux-kotlin publications dir
-      uses: actions/upload-artifact@v1
-      with:
-        name: publications-${{ matrix.os }}
-        path: redux-kotlin/build/publications
+      - name: Archive redux-kotlin publications dir
+        uses: actions/upload-artifact@v1
+        with:
+          name: publications-${{ matrix.os }}
+          path: redux-kotlin/build/publications
 
-    - name: Archive redux-kotlin-threadsafe publications dir
-      if: steps.publish.outputsexit_code == 0
-      uses: actions/upload-artifact@v1
-      with:
-        name: publications-threadsafe-${{ matrix.os }}
-        path: redux-kotlin-threadsafe/build/publications
-
+      - name: Archive redux-kotlin-threadsafe publications dir
+        if: steps.publish.outputsexit_code == 0
+        uses: actions/upload-artifact@v1
+        with:
+          name: publications-threadsafe-${{ matrix.os }}
+          path: redux-kotlin-threadsafe/build/publications

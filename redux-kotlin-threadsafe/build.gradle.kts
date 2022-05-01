@@ -1,17 +1,28 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
-    java
     kotlin("multiplatform")
+    id("com.android.library")
     id("kotlinx-atomicfu")
+    id("redux-publish")
 }
 
 kotlin {
-//    androidNativeArm32()
-//    androidNativeArm64()
-//    iosArm32()
-    iosArm64()
-    iosX64()
-    js(BOTH) {
+    android()
+    val isMacOsX = DefaultNativePlatform.getCurrentOperatingSystem().isMacOsX
+    if (isMacOsX) {
+        iosArm64()
+        iosX64()
+        iosSimulatorArm64()
+        macosX64()
+        tvosArm64()
+        tvosX64()
+        watchosArm32()
+        watchosArm64()
+        watchosX86()
+    }
+
+    js(IR) {
         browser()
         nodejs()
 
@@ -26,16 +37,13 @@ kotlin {
     }
     jvm()
     linuxX64()
-    macosX64()
     mingwX64()
-//    mingwX86()
-    tvosArm64()
-    tvosX64()
-    watchosArm32()
-    watchosArm64()
-    watchosX86()
 
 //    below are currently not supported by atomicfu
+//    mingwX86()
+//    androidNativeArm32()
+//    androidNativeArm64()
+//    iosArm32()
 //    wasm32("wasm")
 //    linuxArm32Hfp("linArm32")
 //    linuxMips32("linMips32")
@@ -48,31 +56,53 @@ kotlin {
                 api(project(":redux-kotlin"))
             }
         }
+
         commonTest {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation(Libs.mockk_common)
-                implementation(Libs.kotlinx_coroutines_core)
+                implementation(Testing.mockK.common)
+                implementation(KotlinX.coroutines.core)
             }
         }
+
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
-                implementation(Libs.kotlinx_coroutines_test)
-                implementation(Libs.kotlinx_coroutines_core_jvm)
-                implementation(Libs.mockk)
+                implementation(KotlinX.coroutines.test)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:_")
+                implementation(Testing.mockK)
 
-                runtimeOnly(Libs.kotlin_reflect)
+                runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:_")
             }
         }
+
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(kotlin("stdlib-js"))
             }
         }
+    }
+}
+
+android {
+    compileSdk = 32
+
+    defaultConfig {
+        minSdk = 21
+        targetSdk = compileSdk
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    sourceSets["main"].run {
+        manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
@@ -97,5 +127,3 @@ afterEvaluate {
         // tasks.create("uploadArchives").dependsOn("publishKotlinMultiplatformPublicationToMavenRepository")
     }
 }
-
-apply(from = rootProject.file("gradle/publish.gradle"))

@@ -1,33 +1,25 @@
-
 buildscript {
     repositories {
-        google()
+        gradlePluginPortal()
         mavenCentral()
-        maven("https://dl.bintray.com/jetbrains/kotlin-native-dependencies")
-        maven("https://plugins.gradle.org/m2/")
         maven("https://oss.sonatype.org/content/repositories/snapshots")
-        jcenter()
+        google()
     }
 
     dependencies {
-        classpath(Plugins.kotlin)
-        classpath(Plugins.dokka)
-        classpath(Plugins.android)
-        classpath(Plugins.atomicFu)
+        classpath(Android.tools.build.gradlePlugin)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
+        classpath("org.jetbrains.kotlinx:atomicfu-gradle-plugin:_")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:_")
     }
-}
-
-plugins {
-    id("de.fayard.buildSrcVersions") version "0.4.2"
 }
 
 allprojects {
     repositories {
-        google()
-        jcenter()
-        maven("https://kotlin.bintray.com/kotlinx")
-        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        gradlePluginPortal()
         mavenCentral()
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        google()
     }
 
     group = project.properties["GROUP"]!!
